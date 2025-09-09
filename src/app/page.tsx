@@ -1,103 +1,119 @@
+"use client"
+
+import { motion } from "framer-motion";
 import Image from "next/image";
-
-export default function Home() {
+import img1 from '../../public/img1.webp'
+import img2 from '../../public/img2.webp'
+import img3 from '../../public/img3.webp'
+import pablo from '../../public/pablo.webp'
+// --- HeroBanner Component ---
+ function HeroBanner() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <section className="min-h-screen flex flex-col items-center justify-center text-center bg-gradient-to-br from-blue-600 to-pink-400 text-white px-6 py-20">
+      <motion.h1
+        initial={{ opacity: 0, y: -30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        className="text-5xl md:text-7xl font-bold mb-6"
+      >
+        🎉 Happy Birthday Mom!
+      </motion.h1>
+      <motion.p
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.5, duration: 0.8 }}
+        className="text-lg md:text-2xl max-w-2xl"
+      >
+        I hope you enjoyed your day, here is a digital card
+        from your son.
+      </motion.p>
+    </section>
+  );
+}
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+// --- MessageSection Component ---
+function MessageSection() {
+
+const text = ` Thank you for being a great mom and helping me in my life! I appreciate
+the food you make me and all the effort you put into me
+to let me do what I do. It'll pay off soon enough
+and hopefully you can benefit from the work that I have been doing.
+Thanks for being so supporting of me! I'll try to keep
+things cleaner.`
+
+  return (
+    <section className="min-h-screen flex flex-col items-center justify-center px-6 py-20 bg-gradient-radial from-blue-100 via-white to-pink-100 text-gray-800
+    text-gray-800 text-center"
+    style={{
+      background: "radial-gradient(circle at center, #DBEAFE, #FFFFFF, #FBCFE8)",
+      color: "#1F2937"
+    }}
+    >
+      <motion.h2
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        className="text-4xl font-semibold mb-8"
+      >
+       A great supporter
+      </motion.h2>
+      <motion.p
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ delay: 0.3, duration: 0.8 }}
+        className="max-w-3xl text-lg leading-relaxed"
+      >
+      {text}
+      </motion.p>
+    </section>
+  );
+}
+
+// --- PhotoSection Component ---
+function PhotoSection() {
+  const photos = [img1,img2,img3,pablo];
+
+  return (
+    <section className="min-h-screen px-6 py-20 bg-gradient-to-b from-blue-50 to-white">
+      <motion.h2
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        className="text-4xl font-semibold text-center mb-12 text-blue-700"
+      >
+        Favorite Pictures
+      </motion.h2>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        {photos.map((src,index) => (
+          <motion.div
+            key={index}
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6 }}
+            className="rounded-2xl overflow-hidden shadow-lg hover:scale-105 transform transition"
           >
             <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
+              src={src}
+              alt={`Photo ${src}`}
+              width={500}
+              height={300}
+              className="object-contain w-full h-64 bg-blue-200"
             />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+          </motion.div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+// --- BirthdayCardPage ---
+export default function BirthdayCardPage() {
+  return (
+    <main className="flex flex-col w-full">
+      <HeroBanner />
+      <MessageSection />
+      <PhotoSection />
+    </main>
   );
 }
